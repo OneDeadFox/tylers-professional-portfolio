@@ -1,23 +1,18 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Body from './components/Body';
-import Footer from './components/Footer';
+import Layout from './components/Layout';
 
 const styles = {
   root: {
     color: "black",
     fontFamily: "GT Walsheim, GT Walsheim, sans-serif",
-    fontSize: "1.25em"
+    fontSize: "1.25em",
+    boxSizing: `border-box`,
   }
 }
 
 export default function App() {
   return (
-    <div className="App" style={styles.root}>
-        <Navbar />
-        <Body />
-        <Footer />
-    </div>
+    <Layout />
   );
 }
 

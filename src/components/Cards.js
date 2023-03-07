@@ -20,7 +20,7 @@ const cards = [
     }
 ]
 
-export default function Cards() {
+export default function Cards({colSize}) {
     const springHeight = 45 / cards.length;
 
     const openPrimary = (e) => {
@@ -35,7 +35,7 @@ export default function Cards() {
     })
 
     return (
-        <div className={`accordion accordion-flush d-flex flex-column col-lg-8 col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-0 px-0`} id="cardAccordian">
+        <div className={`accordion accordion-flush d-flex flex-column col-lg-${colSize} col-md-8 col-sm-12 order-lg-1 order-md-1 order-sm-0 px-0`} id="cardAccordian">
             {cards.map((card, i) => <WorkCard key={`${i}-card`} dataId={i} img={card.img} url={card.url} description={card.description} cardNum={cards.length}/>)}
         </div>
     )

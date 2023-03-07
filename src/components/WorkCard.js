@@ -16,7 +16,7 @@ export default function WorkCard(props) {
             overflow: `hidden`,
         },
         card: {
-            backgroundColor: `#77777733`,
+            backgroundColor: `${vars.v.accent2}`,
             width: `8em`,
             height: `60vh`,
             position: `absolute`,

@@ -4,7 +4,7 @@ import * as vars from './styleVars';
 
 const styles = {
     footer: {
-        backgroundColor: `green`,
+        backgroundColor: `${vars.v.headerColor}`,
         height: `${vars.v.footerHeight}vh`,
     }
 }
@@ -12,7 +12,7 @@ const styles = {
 export default function Footer() {
     return (
         <div style={styles.footer}>
-
+            <img src='../images/githubMark.png' alt='Github link'/>
         </div>
     )
 }
