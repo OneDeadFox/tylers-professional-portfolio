@@ -7,6 +7,11 @@ const styles = {
         backgroundColor: `${vars.v.accent}`,
         overflow: `hidden`,
     },
+    bioMobile: {
+        height: `${100 - vars.v.footerHeight}vh`,
+        backgroundColor: `${vars.v.headerColor}`,
+        overflow: `hidden`,
+    },
     bio: {
         textAlign: "justify",
     },
@@ -23,9 +28,13 @@ const styles = {
 }
 const skills = [`Full-stack Development`, `React`, `Other Thing`]
 
-export default function Bio() {
+export default function Bio(props) {
     return (
-        <div className={`col-lg-4 col-md-4 col-sm-12 order-lg-0 order-md-0 order-sm-1 px-0 text-justify`} style={styles.bioBody}>
+        <div 
+            id='Bio' 
+            className={`col-lg-4 col-md-4 col-sm-12 order-lg-0 order-md-0 order-sm-1 px-0 text-justify`} 
+            style={props.isMobile === true ? styles.bioMobile : styles.bioBody}
+        >
             <article className={`bio`} style={styles.bio}>
                 <img src='../images/me.jpg' alt='incredible web developer' style={styles.user}></img>
                 <p style={styles.bioContent}>Ut itaque totam et galisum blanditiis ut dolorem perferendis aut eligendi sequi. Est quidem nisi est inventore suscipit qui dolor tempora et tenetur quia et neque explicabo quo labore totam a dolores cumque.</p>

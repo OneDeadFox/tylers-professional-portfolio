@@ -12,7 +12,6 @@ export default function Lauout() {
   //set up useState functionality to change sidebar pages
   const [currentPage, setCurrentPage] = useState('Bio')
   const handlePageChange = (page) => setCurrentPage(page);
-
   //set up useState for window resizing
   const [isMobile, setIsMobile] = useState(getIsMobile());
 
@@ -20,7 +19,6 @@ export default function Lauout() {
     const onResize = () => {
       setIsMobile(getIsMobile());
     }
-    console.log(`test`)
     window.addEventListener('resize', onResize);
 
     //cleanup event listener
@@ -29,19 +27,25 @@ export default function Lauout() {
     }
   }, []);
   
+//console.log(isMobile)
+
   const renderPage = () => {
     if(currentPage === `Bio`) {
       return (
-          <Bio />
+          <Bio isMobile={isMobile}/>
       )
   }else if(currentPage === 'Contact') {
       return (
-          <Contact />
+          <Contact isMobile={isMobile}/>
       )
   }else if(currentPage === 'Resume') {
       return (
-          <Resume />
+          <Resume isMobile={isMobile}/>
       )
+  }else if(currentPage === 'Portfolio'){
+      return (
+        <Bio />
+    )
   }
   }
 
@@ -50,9 +54,10 @@ export default function Lauout() {
     let colSize = 8;
 
     if(getIsMobile()){
+      //isMobile = true
       return (
         <main className={`main`}>
-            <Cards colSize={colSize} />
+            <Cards colSize={colSize} isMobile={isMobile}/>
             {renderPage()}
         </main>
       )

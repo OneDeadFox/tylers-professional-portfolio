@@ -6,6 +6,13 @@ const styles = {
         height: `${vars.v.bodyHeight}vh`,
         backgroundColor: `${vars.v.accent}`,
         overflow: `hidden`,
+        display: `flex`,
+        justifyContent: `center`,
+    },
+    contactMobile: {
+        height: `${100 - vars.v.footerHeight}vh`,
+        backgroundColor: `${vars.v.headerColor}`,
+        overflow: `hidden`,
     },
     contact: {
         fontSize: `1.5em`,
@@ -16,15 +23,33 @@ const styles = {
     },
     form: {
         width: `80%`,
+        display: `flex`,
+        alignItems: `center`,
+        flexDirection: `column`,
     },
     input: {
+        marginTop: `.5em`,
         border: `none`,
         width: `80%`,
         resize: `none`,
         boxShadow: `none`,
         outline: `none`
     },
+    textarea: {
+        height: `35vh`,
+        marginTop: `.5em`,
+        border: `none`,
+        width: `80%`,
+        resize: `none`,
+        boxShadow: `none`,
+        outline: `none`
+    },
+    title: {
+        marginBottom: `0`,
+    },
     button: {
+        marginTop: `.5em`,
+        width: `12vh`,
         border: `none`,
         borderRadius: `5px`,
     },
@@ -33,7 +58,7 @@ const styles = {
     }
 }
 
-export default function Contact() {
+export default function Contact(props) {
     const [name, setContactName] = useState('');
     const [email, setContactEmail] = useState('');
     const [message, setContactMessage] = useState('');
@@ -88,7 +113,12 @@ export default function Contact() {
     }
 
     return(
-        <div className={`col-lg-4 col-md-4 col-sm-12 order-lg-0 order-md-0 order-sm-1 px-0 d-flex flex-column align-items-center`} style={styles.contactBody}>
+        <div 
+            id='Contact' 
+            className={`col-lg-4 col-md-4 col-sm-12 order-lg-0 order-md-0 order-sm-1 px-0 d-flex flex-column align-items-center`} 
+            style={props.isMobile === true ? styles.contactMobile : styles.contactBody}
+        >
+            <p style={styles.title}>Contact Me:</p>
             <form className={`contact-form`} style={styles.form}>
                 <input 
                     value={name}
@@ -117,7 +147,7 @@ export default function Contact() {
                     onChange={handleChange}
                     onBlur={validateField}
                     placeholder='Message'
-                    style={styles.input}
+                    style={styles.textarea}
 
                 />
                 <p id={`message-error`} style={styles.validatorError}></p>

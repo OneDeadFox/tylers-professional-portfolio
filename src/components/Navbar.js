@@ -1,4 +1,5 @@
-import React from 'react';
+import {React, useState} from 'react';
+import Dropdown from './Dropdown';
 import * as vars from './styleVars';
 
 //CSS Stylings
@@ -17,9 +18,20 @@ const styles = {
     inactive: {
     }
 }
+
 const workEntries = [`Bio`, `Contact`, `Resume`];
 
+
+
 export default function Navbar({currentPage, handlePageChange}) {
+    const [dropdown, setDropdown] = useState(0);
+
+    const loadLinks = () => {
+        if(dropdown === 1){
+            return (<Dropdown/>)
+        }
+    }
+
     //Create HTML Elements
     return (
         <nav className={`navbar flex-fill justify-space-between`} style={styles.bar}>
@@ -32,8 +44,9 @@ export default function Navbar({currentPage, handlePageChange}) {
                     return (
                     <a 
                         className={`${entry} 
-                        nav-link px-2`} 
-                        key={i} href={"#"+entry} 
+                        nav-link px-3`} 
+                        key={i} 
+                        href={"#"+entry} 
                         onClick={() => handlePageChange(`${entry}`)}
                         style={currentPage === entry ? styles.link : styles.inactive}
 
@@ -42,9 +55,20 @@ export default function Navbar({currentPage, handlePageChange}) {
                     </a>)
                 })
             }
-            <div id='dropDown'>
+            <a 
+                id='dropDown' 
+                className={`nav-link ps-3 pe-4`}
+                href={'#Porfolio'}
+                onClick={() => {
+                    handlePageChange(`Portfolio`)
+                    setDropdown(1);
+                    }
+                }
+                style={currentPage === 'Portfolio' ? styles.link : styles.inactive}
+            >
                 Portfolio
-            </div>
+                {loadLinks()}
+            </a>
             </section>
         </nav>
     )
