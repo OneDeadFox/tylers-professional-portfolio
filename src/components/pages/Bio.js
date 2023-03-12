@@ -1,4 +1,5 @@
 import React from 'react';
+import me from '../images/me.jpg'
 import * as vars from '../styleVars';
 
 const styles = {
@@ -36,7 +37,7 @@ export default function Bio(props) {
             style={props.isMobile === true ? styles.bioMobile : styles.bioBody}
         >
             <article className={`bio`} style={styles.bio}>
-                <img src='../images/me.jpg' alt='incredible web developer' style={styles.user}></img>
+                <img src={me} alt='incredible web developer' style={styles.user}></img>
                 <p style={styles.bioContent}>Ut itaque totam et galisum blanditiis ut dolorem perferendis aut eligendi sequi. Est quidem nisi est inventore suscipit qui dolor tempora et tenetur quia et neque explicabo quo labore totam a dolores cumque.</p>
             </article>
             <section className={`skills mt-2`}>

@@ -27,8 +27,6 @@ export default function Lauout() {
     }
   }, []);
   
-//console.log(isMobile)
-
   const renderPage = () => {
     if(currentPage === `Bio`) {
       return (
@@ -71,7 +69,7 @@ export default function Lauout() {
       return (        
         <main className={`main d-flex`}>
             {renderPage()}
-            <Cards colSize={colSize}/>
+            <Cards colSize={colSize} isMobile={isMobile}/>
         </main>
       )
     }

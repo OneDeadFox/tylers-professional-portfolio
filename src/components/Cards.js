@@ -3,7 +3,6 @@ import WorkCard from './WorkCard';
 import * as vars from './styleVars';
 
 export default function Cards(props) {
-
     const styles = {
         container: {
             display: `flex`,
@@ -25,7 +24,6 @@ export default function Cards(props) {
             expandedSpringHeight = vars.v.bodyHeight - (springHeight * (cardNum - 1));
         }
         //expand top spring
-        console.log(expandedSpringHeight);
         const spring = document.getElementById(`spring-0`);
         const tempStyle = spring.getAttribute(`style`)
         spring.setAttribute(`style`, `${tempStyle}; height: ${expandedSpringHeight}vh;`)
@@ -46,9 +44,9 @@ export default function Cards(props) {
         card.setAttribute(`style`, `${tempStyleCard}; right: 0; transition: .5s;`);
 
         //remove filter
-        const filter = document.getElementById(`filter-0`);
-        const filterTempStyle = filter.getAttribute(`style`)
-        filter.setAttribute(`style`, `${filterTempStyle}; opacity: 0;`)
+        // const filter = document.getElementById(`filter-0`);
+        // const filterTempStyle = filter.getAttribute(`style`)
+        // filter.setAttribute(`style`, `${filterTempStyle}; opacity: 0;`)
     }
 
     useEffect(() => {

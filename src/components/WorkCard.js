@@ -1,10 +1,11 @@
-import {React} from 'react';
+import {React, useEffect, useState} from 'react';
 import * as vars from './styleVars';
 import github from './images/ghMark.png'
 
 
 export default function WorkCard(props) {
     //establish spring height based on screen size
+    
     const springHeight = 45 / props.cardNum;
     let expandedSpringHeight;
     if(props.isMobile){
@@ -40,6 +41,12 @@ export default function WorkCard(props) {
             height: `60vh`,
             position: `absolute`,
             top: `0`,
+            display: `none`,
+        },
+        springLink: {
+            width: `auto`,
+            height: `${expandedSpringHeight}vh`,
+            display: `block`,
         },
         edge: {
             backgroundColor: `#44444444`,
@@ -94,13 +101,19 @@ export default function WorkCard(props) {
             alignItems: `center`,
         }
     }
+    const [isActive, setIsActive] = useState(false)
 
-    //const [isActive, setIsActive] = useState(false);
+    useEffect(() => {
+        if(props.dataId === 0){
+            setIsActive(true);
+        };
+    },[props.dataId]);
 
     const onHover = (e) => {
         //set it up so that moving over different springs doesn't restart the animations
         // setIsActive(true);
-        
+        setIsActive(true);
+        console.log(isActive);
         //set active spring to fade out upon entering another spring
         const spring = document.getElementById(`spring-${props.dataId}`);
         spring.classList.add(`active`);
@@ -267,29 +280,36 @@ export default function WorkCard(props) {
             }, edge3Dur);
 
             //Fade filter
-            const filter = document.getElementById(`filter-${props.dataId}`);
-            const filterFader = [
-                {
-                    opacity: 100,
-                },
-                {
-                    opacity: 0,
-                }
-            ];
-            const faderTiming = {
-                duration: 500,
-                iterations: 1,
-            }
-            filter.animate(filterFader, faderTiming);
-            const filterTempStyle = filter.getAttribute(`style`)
-            setTimeout(() => {
-                filter.setAttribute(`style`, `${filterTempStyle}; opacity: 0;`)
-            }, 480);
+        //     const filter = document.getElementById(`filter-${props.dataId}`);
+        //     const filterFader = [
+        //         {
+        //             opacity: 100,
+        //         },
+        //         {
+        //             opacity: 0,
+        //         }
+        //     ];
+        //     const faderTiming = {
+        //         duration: 500,
+        //         iterations: 1,
+        //     }
+        //     filter.animate(filterFader, faderTiming);
+        //     const filterTempStyle = filter.getAttribute(`style`)
+        //     setTimeout(() => {
+        //         filter.setAttribute(`style`, `${filterTempStyle}; opacity: 0;`)
+        //     }, 480);
         }
+        //remove inactive class
+        spring.classList.remove(`inactive`);
+    }
 
-        // allItems.forEach(item => {
-        //     if(item.classList.contains(`active`) && item.classList.contains(`inactive`)){
-        //         item.classList.remove(`active`);
+    const onExit = (e) => {
+        setIsActive(false);
+        console.log(isActive);
+        // const filter = document.getElementById(`filter-${props.dataId}`);
+        // if(filter.classList.contains(`active`) && filter.classList.contains(`inactive`)){
+
+        //         filter.classList.remove(`active`);
         //         const filterFader = [
         //             {
         //                 opacity: 0,
@@ -302,54 +322,32 @@ export default function WorkCard(props) {
         //             duration: 500,
         //             iterations: 1,
         //         }
-        //         item.animate(filterFader, faderTiming);
-        //         const filterTempStyle = item.getAttribute(`style`)
+        //         filter.animate(filterFader, faderTiming);
+        //         const filterTempStyle = filter.getAttribute(`style`)
         //         setTimeout(() => {
-        //             item.setAttribute(`style`, `${filterTempStyle}; opacity: 100;`)
-        //         }, 482);
+        //             filter.setAttribute(`style`, `${filterTempStyle}; opacity: 100;`)
+        //         }, 480); 
         //     }
-        // })
-        //remove inactive class
-        spring.classList.remove(`inactive`);
     }
 
-    const onExit = (e) => {
-        onHover(e);
-        const filter = document.getElementById(`filter-${props.dataId}`);
-        if(filter.classList.contains(`active`) && filter.classList.contains(`inactive`)){
-
-                filter.classList.remove(`active`);
-                const filterFader = [
-                    {
-                        opacity: 0,
-                    },
-                    {
-                        opacity: 100,
-                    }
-                ];
-                const faderTiming = {
-                    duration: 500,
-                    iterations: 1,
-                }
-                filter.animate(filterFader, faderTiming);
-                const filterTempStyle = filter.getAttribute(`style`)
-                setTimeout(() => {
-                    filter.setAttribute(`style`, `${filterTempStyle}; opacity: 100;`)
-                }, 480); 
-            }
-    }
-
+    
+// document.querySelector(`spring-${props.dataId}`).classList.contains(`active`) === true ? `${props.url}` : 
         return (
             <a 
-                href={`${props.url}`} 
                 id={`spring-${props.dataId}`} 
-                className={`accordianItem`} 
-                target={`_blank`} 
                 style={styles.spring} 
-                onMouseEnter={() => onHover()} 
+                href={isActive === true ? `${props.url}` : `#blank`}  
+                className={`accordianItem`} 
+                target={isActive === true ? `blank` : ``} 
+                onMouseEnter={() => props.isMobile === false ? onHover() : function(){}} 
                 onMouseLeave={() => onExit()}
+                onClick={() => props.isMobile === true ? onHover() : function(){}}
             >
-                <div id={`filter-${props.dataId}`}></div>
+                <div
+                    id={`filter-${props.dataId}`}
+                    style={styles.filter}
+                >
+                </div>
                 <div id={`card-${props.dataId}`} className={`itemCard`} style={styles.card}>
                     <div id={`edge-1-${props.dataId}`}className={`edge`} style={styles.edge}></div>
                     <div id={`edge-2-${props.dataId}`}className={`edge`} style={styles.edge2}></div>
@@ -357,7 +355,7 @@ export default function WorkCard(props) {
                     <div style={styles.content} className={`springContent`}>
                     {`${props.description}`}
                         <a 
-                            href={`${props.repo}`} 
+                            href={props.repo}
                             target={'blank'}
                             style={styles.logoLink}>
                             <img src={github} alt='Github link' style={styles.logos}/>
