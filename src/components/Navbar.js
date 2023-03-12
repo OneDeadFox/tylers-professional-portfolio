@@ -36,7 +36,7 @@ export default function Navbar({currentPage, handlePageChange}) {
     return (
         <nav className={`navbar flex-fill justify-space-between`} style={styles.bar}>
             <section className={`header`}>
-                Header Deets
+                Tyler Brown
             </section>
             <section className={`links d-flex`}>
             {
