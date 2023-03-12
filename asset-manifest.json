@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/tylers-professional-portfolio/static/css/main.c2cab247.css",
+    "main.js": "/tylers-professional-portfolio/static/js/main.7f2a44af.js",
+    "static/media/pathway2.png": "/tylers-professional-portfolio/static/media/pathway2.f9af8d9c5dbff69bfa8c.png",
+    "static/media/gamerPadTemp.png": "/tylers-professional-portfolio/static/media/gamerPadTemp.fd4104af0a19159302a1.png",
+    "static/media/peerThroughDepths.PNG": "/tylers-professional-portfolio/static/media/peerThroughDepths.a8c5a5fd3238e47bc122.PNG",
+    "static/media/weatherApp.PNG": "/tylers-professional-portfolio/static/media/weatherApp.befe3a598032894fd981.PNG",
+    "static/media/techBlog.PNG": "/tylers-professional-portfolio/static/media/techBlog.30da175103f566206e0a.PNG",
+    "static/media/resume.odt": "/tylers-professional-portfolio/static/media/resume.fc834f429f3f3b561e14.odt",
+    "index.html": "/tylers-professional-portfolio/index.html",
+    "main.c2cab247.css.map": "/tylers-professional-portfolio/static/css/main.c2cab247.css.map",
+    "main.7f2a44af.js.map": "/tylers-professional-portfolio/static/js/main.7f2a44af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2cab247.css",
+    "static/js/main.7f2a44af.js"
+  ]
+}
